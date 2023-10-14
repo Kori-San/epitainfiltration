@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://duc8ps8tv8p2v"]
+
+[ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_air6w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31fcc"]
+albedo_color = Color(0, 0.529412, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l1skg"]
+material = SubResource("StandardMaterial3D_31fcc")
+height = 1.8
+
+[sub_resource type="PrismMesh" id="PrismMesh_mb58c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yg7sy"]
+height = 1.8
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_552ek"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hh08v"]
+albedo_color = Color(0, 1, 1, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4osr"]
+material = SubResource("StandardMaterial3D_hh08v")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iu86b"]
+size = Vector3(1, 1, 5)
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_air6w")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_l1skg")
+skeleton = NodePath("")
+
+[node name="Tete" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.5, 4.37114e-08, 0, -4.37114e-08, -0.5, 0, 0, 0, 0.5, 0, 1.39158, -0.376096)
+mesh = SubResource("PrismMesh_mb58c")
+
+[node name="CollisionShape3D_body" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_yg7sy")
+
+[node name="CollisionShape3D_tete" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 6.08463e-08, 0.695582, -0.564096)
+shape = SubResource("ConvexPolygonShape3D_552ek")
+
+[node name="Detect" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Detect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 5, 0, 1.3036, -3.27441)
+mesh = SubResource("BoxMesh_g4osr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detect"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.304, -3.274)
+shape = SubResource("BoxShape3D_iu86b")
+
+[connection signal="body_entered" from="Detect" to="." method="_on_detect_body_entered"]
+[connection signal="body_exited" from="Detect" to="." method="_on_detect_body_exited"]
