@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+const STATUS = "PLAYER"
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -20,7 +21,8 @@ func _input(event):
 
 func _process(delta):
 	window_activity()
-	rayCast()
+	if Input.is_action_just_pressed("ui_click"):
+		rayCast()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -65,8 +67,7 @@ func rayCast():
 
 	var result = space_state.intersect_ray(query)
 	
-	if Input.is_action_pressed("ui_click"):
-		if result.has("collider") and result.collider is CharacterBody3D:
-			result.collider.hack()
-			print(get_tree())
+	if result.has("collider") and result.collider is CharacterBody3D:
+		result.collider.hack()
+
 	# Raycast End

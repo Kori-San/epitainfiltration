@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcsfyerm6joby"]
+[gd_scene load_steps=8 format=3 uid="uid://bcsfyerm6joby"]
 
 [ext_resource type="PackedScene" uid="uid://cb50715y6uos1" path="res://Scenes/block.tscn" id="1_0famx"]
 [ext_resource type="Script" path="res://Scenes/world.gd" id="1_05ruj"]
@@ -10,13 +10,6 @@
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ye516"]
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
-[sub_resource type="Curve3D" id="Curve3D_d85yc"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 12.6794, 0, -0.0439644, 0, 0, 0, 0, 0, 0, -8.91845, 0, 0.164709, 0, 0, 0, 0, 0, 0, 12.679, 0, -0.044),
-"tilts": PackedFloat32Array(0, 0, 0)
-}
-point_count = 3
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_05ruj")
@@ -61,15 +54,10 @@ light_size = 1.0
 omni_range = 4096.0
 
 [node name="Student" parent="." instance=ExtResource("4_w2d2p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0122, 0.611566, 6.23115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7357, 0.473678, 6.39735)
 
-[node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.592573, 9.80894)
-curve = SubResource("Curve3D_d85yc")
+[node name="Enemy" parent="." instance=ExtResource("3_saq4d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43374, 0.500001, -6.91877)
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-unique_name_in_owner = true
-transform = Transform3D(-0.00966133, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.00966133, 12.6794, 0, -0.0439644)
-
-[node name="Enemy" parent="Path3D/PathFollow3D" instance=ExtResource("3_saq4d")]
-transform = Transform3D(1, 0, 2.79397e-09, 0, 1, 0, -2.79397e-09, 0, 1, 0, 1.23291, 0)
+[node name="Enemy2" parent="." instance=ExtResource("3_saq4d")]
+transform = Transform3D(-0.00966133, 0, 0.999953, 0, 1, 0, -0.999953, 0, -0.00966133, -1.3206, 1.82548, 9.76498)
