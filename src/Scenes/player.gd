@@ -3,7 +3,7 @@ extends CharacterBody3D
 const STATUS = "PLAYER"
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 2.5
 const MOUSE_SENSITIVITY = 0.1
 const RAY_LENGTH = 1000
 

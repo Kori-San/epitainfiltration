@@ -1,0 +1,340 @@
+[gd_scene load_steps=11 format=3 uid="uid://7l8y0w4dmv0b"]
+
+[ext_resource type="PackedScene" uid="uid://dqls71x6ptnxr" path="res://Scenes/player.tscn" id="1_n6clk"]
+[ext_resource type="PackedScene" uid="uid://xej67rv5eds2" path="res://Scenes/rangée_ordi.tscn" id="2_il8fj"]
+[ext_resource type="PackedScene" uid="uid://3julau5fkhr8" path="res://Scenes/student.tscn" id="3_d3a67"]
+[ext_resource type="PackedScene" uid="uid://duc8ps8tv8p2v" path="res://Scenes/enemy.tscn" id="4_5b2jl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ar2n"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8yldh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3rla5"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jaymg"]
+size = Vector3(19, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ipw4s"]
+size = Vector3(19, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_knxxh"]
+size = Vector3(19, 3, 1)
+
+[node name="acuLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_n6clk")]
+transform = Transform3D(0.999973, 0, -0.00741761, 0, 1, 0, 0.00741761, 0, 0.999973, -5.58728, 0.472014, 25.5902)
+
+[node name="sol" type="MeshInstance3D" parent="."]
+transform = Transform3D(49.9985, 0, -0.386587, 0, 1, 0, 0.386587, 0, 49.9985, 7.62939e-06, -0.5, 0)
+mesh = SubResource("BoxMesh_6ar2n")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="sol"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+physics_material_override = SubResource("PhysicsMaterial_8yldh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sol/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_3rla5")
+
+[node name="Start" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18.7263)
+
+[node name="murOuest" type="MeshInstance3D" parent="Start"]
+transform = Transform3D(-5.75494e-08, 0, 1, 0, 4, 0, -1.31658, 0, -4.37114e-08, -9.515, 0.575, 7.9587)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/murOuest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/murOuest/StaticBody3D"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 4.76837e-07, 0)
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="murEst" type="MeshInstance3D" parent="Start"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 4, 0, -1, 0, -4.37114e-08, 9.48911, 0.575, 0)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/murEst"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/murEst/StaticBody3D"]
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="murSud" type="MeshInstance3D" parent="Start"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 4, 0, 1.50996e-07, 0, -1, 0.068, 0.575, 9.515)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Start/murSud"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Start/murSud/StaticBody3D"]
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Start"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.658, 0)
+light_energy = 10.264
+omni_range = 4096.0
+
+[node name="rangée_ordi" parent="Start" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, -6.07016)
+
+[node name="rangée_ordi2" parent="Start" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, -1.99724)
+
+[node name="rangée_ordi3" parent="Start" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, 2.49208)
+
+[node name="rangée_ordi4" parent="Start" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, 6.43703)
+
+[node name="Student" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97252, 0.265241, 14.8432)
+
+[node name="Student2" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.26544, -0.0236683, 18.539)
+
+[node name="Enemy10" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.0024259, 0, 0.999997, 0, 1, 0, -0.999997, 0, -0.0024259, -2.84869, 0.280376, 11.0816)
+
+[node name="cisco" type="Node3D" parent="."]
+
+[node name="murNord" type="MeshInstance3D" parent="cisco"]
+transform = Transform3D(1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0.575441, -9.52348)
+mesh = SubResource("BoxMesh_jaymg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cisco/murNord"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cisco/murNord/StaticBody3D"]
+shape = SubResource("BoxShape3D_knxxh")
+
+[node name="murOuest" type="MeshInstance3D" parent="cisco"]
+transform = Transform3D(-5.75494e-08, 0, 1, 0, 4, 0, -1.31658, 0, -4.37114e-08, -9.515, 0.575, 7.9587)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("../murNord")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cisco/murOuest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cisco/murOuest/StaticBody3D"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 4.76837e-07, 0)
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="murEst" type="MeshInstance3D" parent="cisco"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 4, 0, -1, 0, -4.37114e-08, 9.48911, 0.575, 0)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("../murNord")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cisco/murEst"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cisco/murEst/StaticBody3D"]
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="murSud" type="MeshInstance3D" parent="cisco"]
+transform = Transform3D(-0.799831, 0, -1.50996e-07, 0, 4, 0, 1.20771e-07, 0, -1, 2.44176, 0.575, 9.515)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("../murNord")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="cisco/murSud"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cisco/murSud/StaticBody3D"]
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="cisco"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.658, 0)
+light_energy = 10.264
+omni_range = 4096.0
+
+[node name="rangée_ordi" parent="cisco" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, -6.07016)
+
+[node name="rangée_ordi2" parent="cisco" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, -1.99724)
+
+[node name="rangée_ordi3" parent="cisco" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, 2.49208)
+
+[node name="rangée_ordi4" parent="cisco" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.88471, 0.5, 6.43703)
+
+[node name="Enemy17" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(0.0170509, 0, -0.999855, 0, 1, 0, 0.999855, 0, 0.0170509, 0.253147, 0.280376, -3.94289)
+
+[node name="Enemy18" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.86216, 0, 0.506636, 0, 1, 0, -0.506636, 0, -0.86216, -2.65482, 0.280376, -6.85086)
+
+[node name="Enemy" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.999523, 0, -0.0308874, 0, 1, 0, 0.0308874, 0, -0.999523, -8.27176, 0.140188, -8.32357)
+
+[node name="midlab" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.0191, 0, 0)
+
+[node name="murNord" type="MeshInstance3D" parent="midlab"]
+transform = Transform3D(5.16234, 0, 0, 0, 3.98812, 0, 0, 0, 0.99703, 0, 0.575441, -9.52348)
+mesh = SubResource("BoxMesh_jaymg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="midlab/murNord"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="midlab/murNord/StaticBody3D"]
+shape = SubResource("BoxShape3D_knxxh")
+
+[node name="murSud" type="MeshInstance3D" parent="midlab"]
+transform = Transform3D(-2.581, 0, -1.50996e-07, 0, 4, 0, 3.8972e-07, 0, -1, -14.932, 0.575, 19.9368)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("../murNord")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="midlab/murSud"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="midlab/murSud/StaticBody3D"]
+transform = Transform3D(1.04833, 0, 2.84217e-14, 0, 1, 0, -8.2423e-13, 0, 1, 0.509189, 0, -1.14441e-05)
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="midlab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.95052, 9.13306, 4.49916)
+light_energy = 10.264
+omni_range = 4096.0
+
+[node name="ordimidlab" type="Node3D" parent="midlab"]
+transform = Transform3D(-2.18557e-07, 0, -1, 0, 1, 0, 1, 0, -2.18557e-07, 1.85762, 1.5, 4.48486)
+
+[node name="rangée_ordi18" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, -2.28872e-11, 8.74228e-08, -3.20421e-11, 1, -0.00010472, -8.74228e-08, -0.00010472, -1, 3.63672, -1, 14.122)
+
+[node name="rangée_ordi19" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, -2.28872e-11, 8.74228e-08, -3.20421e-11, 1, -0.00010472, -8.74228e-08, -0.00010472, -1, -10.4703, -1, 14.1223)
+
+[node name="rangée_ordi20" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, -2.28872e-11, 8.74228e-08, -3.20421e-11, 1, -0.00010472, -8.74228e-08, -0.00010472, -1, -4.55701, -1, 7.979)
+
+[node name="rangée_ordi21" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, -9.15489e-12, -1.74846e-07, 9.15489e-12, 1, 0, 1.74846e-07, 2.00086e-18, 1, -4.8185, -1, -2.13499)
+
+[node name="rangée_ordi22" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, -2.28872e-11, -1.74846e-07, 4.1197e-11, 1, 0.00010472, 1.74846e-07, -0.00010472, 1, 0.846323, -1, -2.13499)
+
+[node name="rangée_ordi23" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, -2.28872e-11, -1.74846e-07, 4.1197e-11, 1, 0.00010472, 1.74846e-07, -0.00010472, 1, 6.142, -1, 2.952)
+
+[node name="rangée_ordi9" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6951, -1, -2.13479)
+
+[node name="rangée_ordi10" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.90194, -1, 2.952)
+
+[node name="rangée_ordi11" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.423, -1, 7.97933)
+
+[node name="rangée_ordi12" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01581, -1, 14.122)
+
+[node name="rangée_ordi14" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.8812, -1, 21.2048)
+
+[node name="rangée_ordi15" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.0802, -1, 14.122)
+
+[node name="rangée_ordi16" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12.3651, -1, 7.979)
+
+[node name="rangée_ordi3" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 0.0806103, -1, 2.952)
+
+[node name="rangée_ordi6" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -4.96566, -1, 21.1681)
+
+[node name="rangée_ordi7" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.6655, -1, 21.1674)
+
+[node name="rangée_ordi8" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 11.7064, -1, 21.2123)
+
+[node name="rangée_ordi" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 11.7918, -1, -2.135)
+
+[node name="rangée_ordi2" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 12.0047, -1, 2.95226)
+
+[node name="rangée_ordi4" parent="midlab/ordimidlab" instance=ExtResource("2_il8fj")]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 6.62232, -1, 7.97901)
+
+[node name="murOuest" type="MeshInstance3D" parent="midlab"]
+transform = Transform3D(-5.75494e-08, 0, 1, 0, 4, 0, -1.31658, 0, -4.37114e-08, -28.2539, 0.575, 2.51099)
+mesh = SubResource("BoxMesh_jaymg")
+skeleton = NodePath("../murNord")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="midlab/murOuest"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="midlab/murOuest/StaticBody3D"]
+transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, 7.10543e-15, 0, 1, 0, 4.76837e-07, 0)
+shape = SubResource("BoxShape3D_ipw4s")
+
+[node name="Enemy2" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.999917, 0, -0.0128801, 0, 1, 0, 0.0128801, 0, -0.999917, -13.3426, 0, 7.93658)
+
+[node name="Enemy3" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.382, 0, -3.5624)
+
+[node name="Student3" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.3946, 0, 15.3896)
+
+[node name="Student7" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.2597, 0, -7.95197)
+
+[node name="Student8" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.7256, 0, -0.10979)
+
+[node name="Student9" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8477, 0, 7.52568)
+
+[node name="Student10" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5561, 0, 13.3897)
+
+[node name="Student6" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5264, 0, -1.11345)
+
+[node name="Student11" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.7259, 0, -4.42636)
+
+[node name="Student4" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.3107, 0, 16.0308)
+
+[node name="Student5" parent="." instance=ExtResource("3_d3a67")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.1096, 0, -3.13491)
+
+[node name="Enemy4" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.000506087, 0, -1, 0, 1, 0, 1, 0, -0.000506087, -20.8044, 0, -4.91611)
+
+[node name="Enemy16" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(0.00130894, 0, 0.999999, 0, 1, 0, -0.999999, 0, 0.00130894, -21.7003, 0, 3.45479)
+
+[node name="Enemy15" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(0.0120773, 0, 0.999927, 0, 1, 0, -0.999927, 0, 0.0120773, -26.6758, 0, -2.57576)
+
+[node name="Enemy14" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.1306, 0, 7.97762)
+
+[node name="Enemy13" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.7424, 0, 0.415522)
+
+[node name="Enemy12" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.0006458, 0, -1, 0, 1, 0, 1, 0, -0.0006458, -23.6115, 0, 9.78242)
+
+[node name="Enemy11" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(0.000907616, 0, 1, 0, 1, 0, -1, 0, 0.000907616, -32.7565, 0, 4.53355)
+
+[node name="Enemy9" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.00377003, 0, -0.999993, 0, 1, 0, 0.999993, 0, -0.00377003, -38.2838, 0, 3.17425)
+
+[node name="Enemy8" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7694, 0, 8.7601)
+
+[node name="Enemy7" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.8863, 0, 14.1052)
+
+[node name="Enemy6" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(0.00998309, 0, 0.99995, 0, 1, 0, -0.99995, 0, 0.00998309, -32.8968, 0, 7.53885)
+
+[node name="Enemy5" parent="." instance=ExtResource("4_5b2jl")]
+transform = Transform3D(-0.00898829, 0, -0.99996, 0, 1, 0, 0.99996, 0, -0.00898829, -40.1522, 0, 9.59433)

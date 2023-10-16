@@ -8,6 +8,8 @@ var goToPosition = Vector3.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+var acus = []
+
 func _ready():
 	pass
 
@@ -25,8 +27,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_detect_body_entered(body):
-	print(body)
-	if body.STATUS == "PLAYER":
+	if not body.get("STATUS") == null and body.STATUS == "PLAYER":
 		get_tree().reload_current_scene()
 	pass # Replace with function body.
 
@@ -34,7 +35,28 @@ func _on_detect_body_exited(body):
 	pass # Replace with function body.
 
 func hack():
-	get_tree().reload_current_scene()
+	acus = []
+	getallnodes(get_tree().current_scene)
+	
+	if len(acus) == 0:
+		return
+	
+	var minAcuNode = acus[0]
+	var minAcuDist = self.position.distance_to(minAcuNode.position)
+
+	for acu in acus:
+		if minAcuDist > self.position.distance_to(acu.position):
+			minAcuNode = acu
+			minAcuDist = self.position.distance_to(minAcuNode.position)
+
+	minAcuNode.startMoving(self)
+
+func getallnodes(node):
+	for N in node.get_children():
+		if "Enemy" in N.get_name() and N.get_name() != self.get_name():
+			acus.append(N)
+		if N.get_child_count() > 0:
+			getallnodes(N)
 
 func startMoving(student):
 	isMoving = true

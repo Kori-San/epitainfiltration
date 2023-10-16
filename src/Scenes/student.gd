@@ -23,7 +23,6 @@ func getallnodes(node):
 			getallnodes(N)
 
 func hack():
-	print("student", self.position)
 	acus = []
 	getallnodes(get_tree().current_scene)
 	
